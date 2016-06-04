@@ -8,6 +8,26 @@ from django.utils.timezone import now
 from schedule.models import MonitorKeys
 from django.contrib.auth.models import Group
 
+Release_News_CHOICES = (
+    (1, '正面新闻'),
+    (2, '负面新闻'),
+    (3, '待定新闻')
+)
+
+MEDIA_CHOICES = (
+    ('Audio', (
+            ('vinyl', 'Vinyl'),
+            ('cd', 'CD'),
+        )
+    ),
+    ('Video', (
+            ('vhs', 'VHS Tape'),
+            ('dvd', 'DVD'),
+        )
+    ),
+    ('unknown', 'Unknown'),
+)
+
 
 class CrawlerNews(models.Model):
     news_title = models.CharField(verbose_name="新闻标题", max_length=200, db_index=True)
@@ -62,6 +82,8 @@ def get_uploads_path(instance, filename):
 class ReleaseNews(models.Model):
     release_title = models.CharField(verbose_name="新闻标题", max_length=200, db_index=True)
     release_path = models.ImageField(verbose_name="新闻图片", upload_to=get_uploads_path)
+    release_type = models.PositiveSmallIntegerField(verbose_name="新闻类型", choices=Release_News_CHOICES, default=1)
+    release_media = models.CharField(verbose_name="新闻介质", choices=MEDIA_CHOICES, max_length=10, default='Audio')
 
     def __str__(self):
         return self.release_title

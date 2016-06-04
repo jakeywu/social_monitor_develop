@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'news',
     'schedule',
+    'ckeditor',
+    'import_export',
     'social_monitor_develop',
 ]
 
@@ -124,10 +126,11 @@ USE_TZ = True
 
 ADMIN_SITE_HEADER = "舆情监控系统"
 
-
 # Static file (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
+STATIC_ROOT = 'static/'
 STATIC_URL = '/static/'
 MEDIA_ROOT = 'media/'
 MEDIA_URL = '/media/'
+

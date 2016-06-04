@@ -3,6 +3,7 @@
 from django.contrib import admin
 from news.models import CrawlerNews, MonitorNews, ReleaseNews
 from schedule.models import MonitorKeys
+from import_export.admin import ImportExportActionModelAdmin
 
 
 @admin.register(MonitorNews)
@@ -56,8 +57,8 @@ class CrawlerNewsAdmin(admin.ModelAdmin):
 
 
 @admin.register(ReleaseNews)
-class ReleaseNews(admin.ModelAdmin):
-    fields = ("release_title", "release_path", )
-    list_display = ["release_title", "release_path", ]
+class ReleaseNewsAdmin(ImportExportActionModelAdmin):
+    fields = ("release_title", "release_path", "release_type", "release_media", )
+    list_display = ["release_title", "release_path", "release_type", "release_media", ]
     ordering = ["id"]
     list_per_page = 50

@@ -17,6 +17,7 @@ class MonitorKeys(models.Model):
         db_table = "monitor_key"
         verbose_name = "关键词"
         verbose_name_plural = "关键词"
+        get_latest_by = "timestamp"
 
 
 class SchedulePlan(models.Model):
